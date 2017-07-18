@@ -1,5 +1,7 @@
 Python библиотека для работы с [business.ru API](http://developers.business.ru)
 ============================
+### Установка
+`pip install businessru-api`
 ### Примеры запросов к API
 Далее отражено как выглядели бы описанные в [официальной документации](http://developers.business.ru/api-polnoe/primery_zaprosov_k_api/377)
 примеры запросов при использовании ЯП Python с данным пакетом.
