@@ -129,7 +129,7 @@ class BusinessruAPI(object):
                     self.repair_token()
                     repair = False
             except (TooManyRequests, InvalidToken) as e:
-                if errors_occured == max_retry - 1:
+                if errors_occured == self.max_retry - 1:
                     raise
                 errors_occured += 1
                 if isinstance(e, TooManyRequests):
