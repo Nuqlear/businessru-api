@@ -66,7 +66,7 @@ class BusinessruAPI(object):
                 value = '1' if value else '0'
             elif not isinstance(value, STR_TYPES):
                 value = str(value)
-            options_sorted.append((key, value.encode('utf-8'))) 
+            options_sorted.append((key, value.encode('utf-8')))
 
         for key in sorted(options.keys(), key=lambda k: (k.isdigit(), k)):
             value = options[key]
@@ -102,7 +102,7 @@ class BusinessruAPI(object):
 
     def _request_url(self, method, url, options):
         url = self._get_url_with_params(url, options)
-        attrs = [url, method]
+        attrs = [method, url]
         f = getattr(requests, method.lower(), None)
         if f is None:
             raise UnknownHTTPMethod(method)
@@ -153,9 +153,9 @@ class BusinessruAPI(object):
         response = requests.get(request_url)
         if response.status_code != 200:
             if response.status_code == 503:
-                raise TooManyRequests(request_url, 'get')
+                raise TooManyRequests('get', request_url)
             else:
-                raise UnexpectedResponse(request_url, 'get', response.status_code)
+                raise UnexpectedResponse('get', request_url, response.status_code)
         response_data = response.json()
         if not self._validate_response(response_data, True):
             raise ResponseNotValidated(request_url)
