@@ -4,7 +4,6 @@ import requests
 import json
 import logging
 from collections import OrderedDict
-from functools import partial
 from time import sleep
 
 from .exceptions import (
@@ -36,7 +35,6 @@ else:
                            *(self.args or ()), **(self.keywords or {}))
 
     STR_TYPES = (str, unicode)
-
 
 
 class BusinessruAPI(object):

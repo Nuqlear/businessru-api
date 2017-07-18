@@ -5,6 +5,7 @@ class InvalidToken(Exception):
 
     def __init__(self, method, url):
         message = u'{} {} returned 401 (seems like token is invalid)'.format(method, url)
+        super(InvalidToken, self).__init__(message)
 
 
 class ResponseNotValidated(Exception):
@@ -47,4 +48,4 @@ class TooManyRequests(Exception):
 
     def __init__(self, method, url):
         message = u'{} {} returned 504 (seems like too many requests)'.format(method, url)
-        super(TooManyRequests, self).__init__()
+        super(TooManyRequests, self).__init__(message)
