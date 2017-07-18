@@ -59,14 +59,22 @@ class BusinessruAPI(object):
 
     def _get_url_with_params(self, url, options, without_token=False):
         options['app_id'] = self.app_id
-        options_sorted = []        
-        for key in sorted(options.keys(), key=lambda k: (k.isdigit(), k)):
-            value = options[key]
+        options_sorted = []
+
+        def append_option(key, value):
             if isinstance(value, bool):
                 value = '1' if value else '0'
             elif not isinstance(value, STR_TYPES):
                 value = str(value)
-            options_sorted.append((key, value.encode('utf-8')))
+            options_sorted.append((key, value.encode('utf-8'))) 
+
+        for key in sorted(options.keys(), key=lambda k: (k.isdigit(), k)):
+            value = options[key]
+            if isinstance(value, list):
+                for index, sub_value in enumerate(value):
+                    append_option("{}[{}]".format(key, index), sub_value)
+                continue
+            append_option(key, value)
         params_string = urlencode(options_sorted)
         app_psw = str()
         if without_token is False:
