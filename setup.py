@@ -10,6 +10,6 @@ setup(
     download_url = 'https://github.com/nuqlear/businessru-api/archive/0.1.tar.gz',
     keywords = ['business.ru', 'businessru'],
     install_requires=[
-        'requests==2.18.1'
+        'requests==2.20.0'
     ],
 )
